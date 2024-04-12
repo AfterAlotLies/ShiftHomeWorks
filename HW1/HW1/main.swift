@@ -8,8 +8,7 @@
 import Foundation
 
 var carsData = [Car]()
-let menu = "\n1. Добавить новый автомобиль\n2. Вывод добавленных автомобилей\n3. Найти автомобили по кузову\n4. Выйти\n"
-print(menu)
+outputMenu()
 
 while let userInteraction = readLine() {
     if userInteraction == "4" {
@@ -18,39 +17,47 @@ while let userInteraction = readLine() {
     switch userInteraction {
     case "1":
         addNewCar()
-        print(menu)
+        outputMenu()
     case "2":
         outputCarsData(inputArray: carsData)
-        print(menu)
+        outputMenu()
     case "3":
         outputCarByFilter()
-        print(menu)
+        outputMenu()
     default:
         print("Неизвестная команда, повторите ввод")
-        print(menu)
+        outputMenu()
     }
 }
 
 func addNewCar() {
     print("Введите производителя")
-    let manufacturer = readLine()
+    guard let manufacturer = readLine(), !manufacturer.isEmpty else {
+        print("Производитель не может быть пустым\n")
+        return
+    }
+    
     print("Введите модель")
-    let model = readLine()
-    print("Выберите тип кузова:\n1.Седан\n2.Купе\n3.Хэтчбэк\n4.Лифтбек\n5.Универсал")
+    guard let model = readLine(), !model.isEmpty else {
+        print("Модель не может быть пустой\n")
+        return
+    }
+    
+    outputCarBodyTypes()
     let carBody = CarBody.getBodyType(userChoice: Int(readLine() ?? "") ?? 0)
     print("Введите год выпуска(необязательно)")
     let yearOfIssue = Int(readLine() ?? "")
     print("Введите Гос.Номер(необязательно)")
     let carNubmer = readLine()
-    carsData.append(Car.init(manufacturer: manufacturer != "" ? manufacturer ?? "" : "Никакой",
-                             model: model != "" ? model ?? "" : "Никакая",
+    carsData.append(Car.init(manufacturer: manufacturer,
+                             model: model,
                              body: carBody,
                              yearOfIssue: yearOfIssue,
                              carNumber: carNubmer))
 }
 
 func outputCarByFilter() {
-    print("Выберите кузов машины, которую хотите отобразить:\n1.Седан\n2.Купе\n3.Хэтчбэк\n4.Лифтбек\n5.Универсал")
+    outputCarBodyTypes()
     let carBodyType = CarBody.getBodyType(userChoice: Int(readLine() ?? "") ?? 0)
     let findedCars = carsData.filter { $0.body == carBodyType }
     outputCarsData(inputArray: findedCars)
@@ -58,7 +65,7 @@ func outputCarByFilter() {
 
 func outputCarsData(inputArray: [Car]) {
     if inputArray.isEmpty {
-        print("Пока нет добавленных машин")
+        print("Пока нет добавленных машин\n")
     } else {
         for (index, carData) in inputArray.enumerated() {
             print("\n#\(index + 1).")
@@ -75,5 +82,18 @@ func outputCarsData(inputArray: [Car]) {
                 print("Гос. Номер: \(carNumber)")
             }
         }
+    }
+}
+
+func outputMenu() {
+    MenuActions.allCases.forEach {
+        print($0.rawValue)
+    }
+}
+
+func outputCarBodyTypes() {
+    print("Выберите тип кузова:")
+    CarBody.allCases.dropLast(1).enumerated().forEach { (index, bodyType) in
+        print("\(index + 1).\(bodyType.rawValue)")
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CarBody: String {
+enum CarBody: String, CaseIterable {
     case sedan = "Седан"
     case coupe = "Купе"
     case hatchback = "Хэтчбэк"
