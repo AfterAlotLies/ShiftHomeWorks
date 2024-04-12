@@ -49,8 +49,8 @@ func addNewCar() {
     let yearOfIssue = Int(readLine() ?? "")
     print("Введите Гос.Номер(необязательно)")
     let carNubmer = readLine()
-    carsData.append(Car.init(manufacturer: manufacturer,
-                             model: model,
+    carsData.append(Car.init(manufacturer: !manufacturer.trimmingCharacters(in: .whitespaces).isEmpty ? manufacturer : "Никакой",
+                             model: !model.trimmingCharacters(in: .whitespaces).isEmpty ? model : "Никакая",
                              body: carBody,
                              yearOfIssue: yearOfIssue,
                              carNumber: carNubmer))
