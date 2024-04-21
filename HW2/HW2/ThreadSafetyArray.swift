@@ -7,7 +7,17 @@
 
 import Foundation
 
-class ThreadSafetyArray<T> {
+protocol IThreadSafetyArray {
+    associatedtype T: Equatable
+    var count: Int { get }
+    var isEmpty: Bool { get }
+    func append(_ item: T)
+    func remove(at index: Int)
+    func `subscript`(index: Int) -> T?
+    func contains(_ element: T) -> Bool
+}
+
+class ThreadSafetyArray<T: Equatable>: IThreadSafetyArray {
     
     private var array: [T]
     private let concurrentQueue = DispatchQueue(label: "ConcurrentQueue", attributes: .concurrent)
@@ -44,6 +54,7 @@ class ThreadSafetyArray<T> {
         
         semaphoreActivity {
             guard index >= 0 && index < array.count else {
+                print("Index out of range")
                 return
             }
             result = array[index]
@@ -51,7 +62,7 @@ class ThreadSafetyArray<T> {
         return result
     }
     
-    public func contains(_ element: T) -> Bool where T: Equatable {
+    public func contains(_ element: T) -> Bool {
         var isContains = false
         semaphoreActivity {
             isContains = self.array.contains { $0 == element }
@@ -66,5 +77,13 @@ extension ThreadSafetyArray {
         semaphore.wait()
         completion()
         semaphore.signal()
+    }
+}
+
+extension ThreadSafetyArray {
+    public func getData() -> [T] {
+        concurrentQueue.sync {
+            return array
+        }
     }
 }
