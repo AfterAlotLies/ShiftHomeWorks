@@ -33,7 +33,7 @@ class TabBarController: UITabBarController {
         
         let images = ["profileImage", "skillsImage", "hobbiesImage"]
         
-        for item in 0...2 {
+        for item in images.indices {
             items[item].image = UIImage(named: images[item])
         }
     }
