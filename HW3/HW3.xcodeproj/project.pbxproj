@@ -19,6 +19,8 @@
 		11EEA4822BDB908F00F3895D /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEA4812BDB908F00F3895D /* MyProfileModel.swift */; };
 		11EEA4842BDB98FE00F3895D /* MySkillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEA4832BDB98FE00F3895D /* MySkillsModel.swift */; };
 		11EEA4862BDB9E5500F3895D /* HobbiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEA4852BDB9E5500F3895D /* HobbiesModel.swift */; };
+		11EEA4B02BDE62EF00F3895D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEA4AF2BDE62EF00F3895D /* Fonts.swift */; };
+		11EEA4B22BDE6C3A00F3895D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEA4B12BDE6C3A00F3895D /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		11EEA4812BDB908F00F3895D /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
 		11EEA4832BDB98FE00F3895D /* MySkillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySkillsModel.swift; sourceTree = "<group>"; };
 		11EEA4852BDB9E5500F3895D /* HobbiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesModel.swift; sourceTree = "<group>"; };
+		11EEA4AF2BDE62EF00F3895D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		11EEA4B12BDE6C3A00F3895D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				11EEA46C2BDB7F2400F3895D /* Assets.xcassets */,
 				11EEA46E2BDB7F2400F3895D /* LaunchScreen.storyboard */,
 				11EEA4712BDB7F2400F3895D /* Info.plist */,
+				11EEA4AF2BDE62EF00F3895D /* Fonts.swift */,
+				11EEA4B12BDE6C3A00F3895D /* Colors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -189,11 +195,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				11EEA4682BDB7F2300F3895D /* MyProfileViewController.swift in Sources */,
+				11EEA4B22BDE6C3A00F3895D /* Colors.swift in Sources */,
 				11EEA4822BDB908F00F3895D /* MyProfileModel.swift in Sources */,
 				11EEA47A2BDB7FA200F3895D /* TabBarController.swift in Sources */,
 				11EEA4642BDB7F2300F3895D /* AppDelegate.swift in Sources */,
 				11EEA47F2BDB850B00F3895D /* MyHobbiesViewController.swift in Sources */,
 				11EEA4862BDB9E5500F3895D /* HobbiesModel.swift in Sources */,
+				11EEA4B02BDE62EF00F3895D /* Fonts.swift in Sources */,
 				11EEA47D2BDB84D900F3895D /* MySkillsViewController.swift in Sources */,
 				11EEA4662BDB7F2300F3895D /* SceneDelegate.swift in Sources */,
 				11EEA4842BDB98FE00F3895D /* MySkillsModel.swift in Sources */,
