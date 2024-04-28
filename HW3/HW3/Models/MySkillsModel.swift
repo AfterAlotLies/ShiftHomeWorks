@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum SkillsModel: String {
-    case introductionLabel = "Мои навыки разработчика"
-    case buttonTitle = "Ознакомился!"
+struct SkillsDescriptionModel {
+    let yearEducation: String
+    let language: String
+    let swiftYearEducation: String
+    let expactations: String
 }
 
-enum SkillsDescription: String, CaseIterable {
-    case yearEducation = "- Обучаюсь программированию с 10 класса"
-    case language = "- Первыми языками были C и C++"
-    case swiftYearEducation = "- Swift изучаю на протяжении 8 месяцев"
-    case expectations = "- От обучения ожидаю информации, которая пригодится в будущем для работы"
+struct SkillsUIData {
+    let introductionText: String
+    let buttonTitle: String
 }
