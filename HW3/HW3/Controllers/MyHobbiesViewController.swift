@@ -12,8 +12,8 @@ class MyHobbiesViewController: UIViewController {
     private lazy var introductionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.textColor = .black
+        label.font = Fonts.boldSystemFont25
+        label.textColor = Colors.blackColor
         label.textAlignment = .center
         return label
     }()
@@ -21,8 +21,8 @@ class MyHobbiesViewController: UIViewController {
     private lazy var hobbyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = Fonts.systemFont20
+        label.textColor = Colors.blackColor
         label.numberOfLines = 4
         return label
     }()
@@ -30,8 +30,8 @@ class MyHobbiesViewController: UIViewController {
     private lazy var continueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
+        label.font = Fonts.systemFont20
+        label.textColor = Colors.blackColor
         label.numberOfLines = 3
         return label
     }()
@@ -54,11 +54,11 @@ class MyHobbiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        getData()
+        setDescription()
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.whiteColor
         view.addSubview(introductionLabel)
         view.addSubview(hobbyLabel)
         view.addSubview(continueLabel)
@@ -100,7 +100,7 @@ class MyHobbiesViewController: UIViewController {
         ])
     }
     
-    private func getData() {
+    private func setDescription() {
         introductionLabel.text = HobbiesModel.introductionLabel.rawValue
         hobbyLabel.text = HobbiesModel.hobbyLabel.rawValue
         continueLabel.text = HobbiesModel.continueLabel.rawValue
