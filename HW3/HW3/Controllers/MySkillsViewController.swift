@@ -9,6 +9,13 @@ import UIKit
 
 class MySkillsViewController: UIViewController {
     
+    private enum Constants {
+        static let horizontalAnchorMargin: CGFloat = 16
+        static let topAnchorMargin: CGFloat = 16
+        static let leadingAnchorMargin: CGFloat = 16
+        static let trailingAnchorMagrin: CGFloat = -16
+    }
+    
     private lazy var introductionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,23 +71,23 @@ class MySkillsViewController: UIViewController {
         view.addSubview(acquaintedButton)
         
         NSLayoutConstraint.activate([
-            introductionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            introductionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            introductionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            introductionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.topAnchorMargin),
+            introductionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            introductionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingAnchorMagrin)
         ])
         
         NSLayoutConstraint.activate([
             descriptionTextView.heightAnchor.constraint(equalToConstant: 300),
             descriptionTextView.topAnchor.constraint(equalTo: introductionLabel.bottomAnchor, constant: 36),
-            descriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            descriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            descriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            descriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingAnchorMagrin),
         ])
         
         NSLayoutConstraint.activate([
             acquaintedButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            acquaintedButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            acquaintedButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            acquaintedButton.topAnchor.constraint(greaterThanOrEqualTo: descriptionTextView.bottomAnchor, constant: 16)
+            acquaintedButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            acquaintedButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingAnchorMagrin),
+            acquaintedButton.topAnchor.constraint(greaterThanOrEqualTo: descriptionTextView.bottomAnchor, constant: Constants.topAnchorMargin)
         ])
     }
     
