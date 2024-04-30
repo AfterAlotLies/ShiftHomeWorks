@@ -45,14 +45,14 @@ class MySkillsViewController: UIViewController {
         return button
     }()
     
-    private let skillsDescription = SkillsDescriptionModel.init(
+    private let skillsDescription = SkillsDescriptionModel(
         yearEducation: "Обучаюсь программированию с 10 класса",
         language: "Первыми языками были С и С++",
         swiftYearEducation: "Swift изучаю 8 месяцев",
         expactations: "От обучения ожидаю информации, которая пригодится в будущем для работы"
     )
     
-    private let skillsUIData = SkillsUIData.init(
+    private let skillsUIData = SkillsUIData(
         introductionText: "Мои навыки разработчика",
         buttonTitle: "Ознакомился!"
     )
