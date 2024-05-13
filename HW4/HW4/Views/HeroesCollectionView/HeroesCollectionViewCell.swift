@@ -112,6 +112,7 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         setupItem()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("can not init")
     }

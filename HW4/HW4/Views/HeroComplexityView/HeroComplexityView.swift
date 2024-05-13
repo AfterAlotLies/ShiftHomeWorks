@@ -24,6 +24,7 @@ class HeroComplexityView: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("can not to init")
     }

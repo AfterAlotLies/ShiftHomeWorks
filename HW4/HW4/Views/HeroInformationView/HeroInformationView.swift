@@ -126,6 +126,7 @@ class HeroInformationView: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("can not init")
     }
