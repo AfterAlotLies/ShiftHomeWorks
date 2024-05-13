@@ -25,7 +25,8 @@ class HeroInformationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        heroInfoView.setAction {
+        heroInfoView.setAction { [weak self] in
+            guard let self = self else { return }
             self.presentModalViewController()
         }
     }
@@ -33,7 +34,8 @@ class HeroInformationViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animate(alongsideTransition: nil) { context in
+        coordinator.animate(alongsideTransition: nil) { [weak self] context in
+            guard let self = self else { return }
             if let presentedViewController = self.presentedViewController {
                 presentedViewController.dismiss(animated: false) {
                     self.presentModalViewController()
@@ -49,7 +51,7 @@ class HeroInformationViewController: UIViewController {
 
     private func presentModalViewController() {
         let heroComplexityController = HeroComplexityViewController()
-        heroComplexityController.setComplexityData(passsingComplexity: self.heroComplexity)
+        heroComplexityController.setComplexityData(passsingComplexity: heroComplexity)
         self.present(heroComplexityController, animated: true)
     }
     
@@ -91,12 +93,10 @@ class HeroInformationViewController: UIViewController {
         switch orientation {
         case .portrait:
             gradientLayer.startPoint = CGPoint(x: 1, y: 1)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         case .landscape:
             gradientLayer.startPoint = CGPoint(x: 1, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         }
-        
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
