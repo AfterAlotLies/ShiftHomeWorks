@@ -13,7 +13,7 @@ class HeroComplexityViewController: UIViewController {
         static let firstYcolor = UIColor(red: 84.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1)
         static let secondYColor = UIColor(red: 26.0 / 255.0, green: 19.0 / 255.0, blue: 19.0 / 255.0, alpha: 1)
     }
-
+    
     private var complexity: String = ""
     
     private lazy var heroComplexityView: HeroComplexityView = {
@@ -56,12 +56,10 @@ class HeroComplexityViewController: UIViewController {
         switch orientation {
         case .portrait:
             gradientLayer.startPoint = CGPoint(x: 1, y: 1)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         case .landscape:
             gradientLayer.startPoint = CGPoint(x: 1, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         }
-        
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
