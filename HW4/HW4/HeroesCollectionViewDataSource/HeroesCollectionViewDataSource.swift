@@ -9,10 +9,10 @@ import UIKit
 
 class HeroesCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var mokoData = DataManager.createMoko()
+    private var mockData = DataManager.createMockData()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataManager.createMoko().count
+        return mockData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -20,7 +20,7 @@ class HeroesCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.setDataToCell(data: mokoData[indexPath.item])
+        cell.setDataToCell(data: mockData[indexPath.item])
         
         return cell
     }
