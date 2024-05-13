@@ -9,7 +9,7 @@ import Foundation
 
 class DataManager {
     
-    static func createMoko() -> [HeroesListModel] {
+    static func createMockData() -> [HeroesListModel] {
         return [
             HeroesListModel(
                 heroNameImage: "invokerImage",

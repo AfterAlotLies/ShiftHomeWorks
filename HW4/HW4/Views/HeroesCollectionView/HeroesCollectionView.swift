@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol HeroesCollectionViewDelegate: UICollectionViewDelegate {
-    
-}
+protocol HeroesCollectionViewDelegate: UICollectionViewDelegate {}
 
 class HeroesCollectionView: UIView {
     
