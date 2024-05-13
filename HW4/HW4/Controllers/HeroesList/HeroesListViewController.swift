@@ -14,7 +14,7 @@ class HeroesListViewController: UIViewController {
         static let secondYColor = UIColor(red: 26.0 / 255.0, green: 19.0 / 255.0, blue: 19.0 / 255.0, alpha: 1)
     }
     
-    private var heroesMokoData = DataManager.createMoko()
+    private var heroesMockData = DataManager.createMockData()
     
     private lazy var heroesListView: HeroesCollectionView = {
         let view = HeroesCollectionView(frame: .zero, delegate: self)
@@ -65,12 +65,10 @@ class HeroesListViewController: UIViewController {
         switch orientation {
         case .portrait:
             gradientLayer.startPoint = CGPoint(x: 1, y: 1)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         case .landscape:
             gradientLayer.startPoint = CGPoint(x: 1, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         }
-        
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
@@ -88,8 +86,9 @@ class HeroesListViewController: UIViewController {
 extension HeroesListViewController: HeroesCollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.item < heroesMockData.count else { return }
         let heroInfoController = HeroInformationViewController()
-        heroInfoController.passData(data: heroesMokoData[indexPath.item])
+        heroInfoController.passData(data: heroesMockData[indexPath.item])
         navigationController?.pushViewController(heroInfoController, animated: true)
     }
 }
