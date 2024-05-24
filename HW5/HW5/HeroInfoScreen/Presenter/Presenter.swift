@@ -9,12 +9,13 @@ import Foundation
 
 protocol IPresenter {
     func didLoad(ui: IHeroInformationViewController)
+    func willLayoutSubviews(ui: IHeroInformationViewController)
 }
 
 class Presenter: IPresenter {
     
     private weak var ui: IHeroInformationViewController?
-    private var heroInfo: HeroesListModel
+    private let heroInfo: HeroesListModel
     
     init(heroInfo: HeroesListModel) {
         self.heroInfo = heroInfo
@@ -31,9 +32,14 @@ class Presenter: IPresenter {
                                              description: heroInfo.description))
     }
     
+    func willLayoutSubviews(ui: IHeroInformationViewController) {
+        self.ui = ui
+        ui.updateUIContent()
+    }
+    
     func showModalViewController() {
         let heroComplexityController = HeroComplexityViewController(viewModel: ViewModel(complexityHero: HeroComplexityModel(complexity: heroInfo.complexity.rawValue)))
-        self.ui?.presentModalController(heroComplexityController)
+        self.ui?.setupModalPresentationAction(heroComplexityController)
     }
 }
 
