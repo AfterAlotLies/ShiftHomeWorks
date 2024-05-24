@@ -29,6 +29,7 @@
 		11BB100D2BFA2CBB00288791 /* HeroComplexityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB100C2BFA2CBB00288791 /* HeroComplexityView.swift */; };
 		11BB100F2BFA2DCF00288791 /* HeroComplexityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB100E2BFA2DCF00288791 /* HeroComplexityModel.swift */; };
 		11BB10112BFA2E3200288791 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10102BFA2E3200288791 /* ViewModel.swift */; };
+		11BB10152C00B62F00288791 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10142C00B62F00288791 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		11BB100C2BFA2CBB00288791 /* HeroComplexityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroComplexityView.swift; sourceTree = "<group>"; };
 		11BB100E2BFA2DCF00288791 /* HeroComplexityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroComplexityModel.swift; sourceTree = "<group>"; };
 		11BB10102BFA2E3200288791 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		11BB10142C00B62F00288791 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				11BB0FE52BF9E5D000288791 /* AppOrientation.swift */,
 				11BB0FE42BF9E5D000288791 /* Fonts.swift */,
 				11BB0FE32BF9E5D000288791 /* Colors.swift */,
+				11BB10142C00B62F00288791 /* Constants.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				11BB100D2BFA2CBB00288791 /* HeroComplexityView.swift in Sources */,
 				11BB0FFC2BF9F8F900288791 /* HeroInformationViewController.swift in Sources */,
 				11BB10112BFA2E3200288791 /* ViewModel.swift in Sources */,
+				11BB10152C00B62F00288791 /* Constants.swift in Sources */,
 				11BB10032BFA0F2900288791 /* HeroInformationModel.swift in Sources */,
 				11BB0FE72BF9E5D000288791 /* Fonts.swift in Sources */,
 				11BB10002BF9FCAD00288791 /* HeroesCollectionModel.swift in Sources */,
