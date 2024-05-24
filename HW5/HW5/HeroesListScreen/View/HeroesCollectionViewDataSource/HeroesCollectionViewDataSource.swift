@@ -9,18 +9,28 @@ import UIKit
 
 class HeroesCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-     var mockData = [HeroesCollectionModel]()
+    var heroesData = [HeroesListModel]()
+    
+    func getHeroesData() {
+        heroesData = DataManager.createMockData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mockData.count
+        return heroesData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroesCollectionViewCell.identifer, for: indexPath) as? HeroesCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.setDataToCell(data: mockData[indexPath.item])
+        let heroData = heroesData[indexPath.item]
+        cell.setDataToCell(data: HeroesCollectionModel(heroNameImage: heroData.heroNameImage,
+                                                       heroName: heroData.heroName,
+                                                       heroPosition: heroData.heroPosition,
+                                                       heroStrength: heroData.heroStrength,
+                                                       heroAgility: heroData.heroAgility,
+                                                       heroIntelligence: heroData.heroIntelligence)
+        )
         
         return cell
     }
