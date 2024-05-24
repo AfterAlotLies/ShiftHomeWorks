@@ -10,17 +10,13 @@ import UIKit
 // MARK: - IHeroInformationViewController
 protocol IHeroInformationViewController: AnyObject {
     func setUI(model: HeroInformationModel)
-    func presentModalController(_ viewController: UIViewController)
+    func setupModalPresentationAction(_ viewController: UIViewController)
+    func updateUIContent()
 }
 
 // MARK: - HeroInformationViewController
 class HeroInformationViewController: UIViewController {
-    
-    private enum Constants {
-        static let firstYcolor = UIColor(red: 84.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1)
-        static let secondYColor = UIColor(red: 26.0 / 255.0, green: 19.0 / 255.0, blue: 19.0 / 255.0, alpha: 1)
-    }
-    
+
     private var heroComplexity: HeroComplexity
     private var presenter: Presenter
     
@@ -68,12 +64,8 @@ class HeroInformationViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        if UIDevice.current.orientation.isPortrait {
-            setupBackgroundViewColor(orientation: .portrait)
-        } else {
-            setupBackgroundViewColor(orientation: .landscape)
-            heroInfoView.updateConstraintsForOrientationChange()
-        }
+        super.viewWillLayoutSubviews()
+        presenter.willLayoutSubviews(ui: self)
     }
 }
 
@@ -84,7 +76,16 @@ extension HeroInformationViewController: IHeroInformationViewController {
         heroInfoView.setDataToUI(data: model)
     }
     
-    func presentModalController(_ viewController: UIViewController) {
+    func updateUIContent() {
+        if UIDevice.current.orientation.isPortrait {
+            setupBackgroundViewColor(orientation: .portrait)
+        } else {
+            setupBackgroundViewColor(orientation: .landscape)
+            heroInfoView.updateConstraintsForOrientationChange()
+        }
+    }
+    
+    func setupModalPresentationAction(_ viewController: UIViewController) {
         heroInfoView.setAction { [weak self] in
             guard let self = self else { return }
             self.present(viewController, animated: true)
