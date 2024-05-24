@@ -28,9 +28,9 @@ class HeroInformationView: UIView {
     private lazy var heroNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Colors.whiteColor
+        label.textColor = Colors.labelsTextColor
         label.textAlignment = .center
-        label.font = Fonts.boldSystemFont27
+        label.font = Fonts.boldHeroNameFont27
         return label
     }()
     
@@ -59,8 +59,8 @@ class HeroInformationView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = Colors.whiteColor
-        label.font = Fonts.systemFont20
+        label.textColor = Colors.labelsTextColor
+        label.font = Fonts.systemHeroAttributesFont20
         return label
     }()
     
@@ -68,8 +68,8 @@ class HeroInformationView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = Fonts.systemFont20
-        label.textColor = Colors.whiteColor
+        label.font = Fonts.systemHeroAttributesFont20
+        label.textColor = Colors.labelsTextColor
         return label
     }()
     
@@ -77,8 +77,8 @@ class HeroInformationView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = Fonts.systemFont20
-        label.textColor = Colors.whiteColor
+        label.font = Fonts.systemHeroAttributesFont20
+        label.textColor = Colors.labelsTextColor
         return label
     }()
     
@@ -96,10 +96,10 @@ class HeroInformationView: UIView {
     private lazy var heroDescription: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = Colors.whiteColor
+        textView.textColor = Colors.labelsTextColor
         textView.showsVerticalScrollIndicator = false
-        textView.font = Fonts.boldSystemFont20
-        textView.backgroundColor = Colors.clearColor
+        textView.font = Fonts.boldHeroDescriptionFont20
+        textView.backgroundColor = Colors.clearBackgroundColor
         textView.isEditable = false
         textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = true
@@ -113,7 +113,7 @@ class HeroInformationView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .red
         button.layer.borderWidth = 1
-        button.layer.borderColor = Colors.whiteColor.cgColor
+        button.layer.borderColor = Colors.labelsTextColor.cgColor
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(showHeroComplexity), for: .touchUpInside)
         return button
@@ -193,7 +193,7 @@ private extension HeroInformationView {
     }
     
     func setupView() {
-        backgroundColor = Colors.clearColor
+        backgroundColor = Colors.clearBackgroundColor
         
         addSubview(heroImage)
         addSubview(heroNameLabel)

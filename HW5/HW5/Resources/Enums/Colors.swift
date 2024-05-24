@@ -9,6 +9,6 @@ import UIKit
 
 enum Colors {
     static let labelsTextColor: UIColor = .white
-    static let secondaryBackgroundColor: UIColor = .clear
-    static let backgroundColor: UIColor = .black
+    static let clearBackgroundColor: UIColor = .clear
+    static let backBackgroundColor: UIColor = .black
 }

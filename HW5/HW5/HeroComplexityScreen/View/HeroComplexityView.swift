@@ -13,8 +13,8 @@ class HeroComplexityView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = Fonts.boldSystemFont30
-        label.textColor = Colors.whiteColor
+        label.font = Fonts.boldHeroComplexityFont30
+        label.textColor = Colors.labelsTextColor
         label.numberOfLines = 2
         return label
     }()

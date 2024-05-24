@@ -9,12 +9,6 @@ import UIKit
 
 class HeroesCollectionViewCell: UICollectionViewCell {
     
-    private enum Constants {
-        static let strengthImage: UIImage? = UIImage(named: "strengthImage")
-        static let agilityImage: UIImage? = UIImage(named: "agilityImage")
-        static let intelligenceImage: UIImage? = UIImage(named: "intelligenceImage")
-    }
-    
     static let identifer = String(describing: HeroesCollectionView.self)
     
     private lazy var heroImageView: UIImageView = {
@@ -27,8 +21,8 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = Colors.whiteColor
-        label.font = Fonts.boldSystemFont23
+        label.textColor = Colors.labelsTextColor
+        label.font = Fonts.boldHeroNameFont27
         return label
     }()
     
@@ -36,8 +30,8 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = Colors.whiteColor
-        label.font = Fonts.systemFont14
+        label.textColor = Colors.labelsTextColor
+        label.font = Fonts.systemHeroPositionFont14
         return label
     }()
     
@@ -66,7 +60,7 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = Colors.whiteColor
+        label.textColor = Colors.labelsTextColor
         return label
     }()
     
@@ -74,7 +68,7 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = Colors.whiteColor
+        label.textColor = Colors.labelsTextColor
         return label
     }()
     
@@ -82,7 +76,7 @@ class HeroesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = Colors.whiteColor
+        label.textColor = Colors.labelsTextColor
         return label
     }()
     
@@ -140,11 +134,11 @@ private extension HeroesCollectionViewCell {
     }
     
     func setupCell() {
-        backgroundColor = Colors.blackColor
+        backgroundColor = Colors.backBackgroundColor
         layer.cornerRadius = 10
         layer.borderWidth = 1
         layer.masksToBounds = true
-        layer.borderColor = Colors.blackColor.cgColor
+        layer.borderColor = Colors.backBackgroundColor.cgColor
     }
     
     func setupConstraints() {

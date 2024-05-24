@@ -15,3 +15,4 @@ struct HeroesCollectionModel {
     let heroAgility: Int
     let heroIntelligence: Int
 }
+
