@@ -9,16 +9,11 @@ import UIKit
 
 class HeroesListViewController: UIViewController {
     
-    private enum Constants {
-        static let firstYcolor = UIColor(red: 84.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1)
-        static let secondYColor = UIColor(red: 26.0 / 255.0, green: 19.0 / 255.0, blue: 19.0 / 255.0, alpha: 1)
-    }
-    
     private let heroesMockData = DataManager.createMockData()
     
     private lazy var heroesListView: HeroesCollectionView = {
         let view = HeroesCollectionView(frame: .zero, delegate: self)
-        view.dataSource.mockData = convertDataModel(data: heroesMockData)
+        view.dataSource.getHeroesData()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,12 +40,13 @@ extension HeroesListViewController: HeroesCollectionViewDelegate {
         guard indexPath.item < heroesMockData.count else { return }
         let heroInfoController = HeroInformationViewController(presenter: Presenter(heroInfo: heroesMockData[indexPath.item]),
                                                                complexity: heroesMockData[indexPath.item].complexity)
-        navigationController?.pushViewController(heroInfoController, animated: true)
+        showNextViewController(heroInfoController)
     }
 }
 
 // MARK: - Private methods
 private extension HeroesListViewController {
+    
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(heroesListView)
@@ -60,15 +56,19 @@ private extension HeroesListViewController {
         setupNavBar()
     }
     
+    func showNextViewController( _ viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func convertDataModel(data: [HeroesListModel]) -> [HeroesCollectionModel] {
         var convertedModel = [HeroesCollectionModel]()
-        for heroesMockDatum in heroesMockData {
-            convertedModel.append(HeroesCollectionModel.init(heroNameImage: heroesMockDatum.heroNameImage,
-                                                             heroName: heroesMockDatum.heroName,
-                                                             heroPosition: heroesMockDatum.heroPosition,
-                                                             heroStrength: heroesMockDatum.heroStrength,
-                                                             heroAgility: heroesMockDatum.heroAgility,
-                                                             heroIntelligence: heroesMockDatum.heroIntelligence))
+        convertedModel = heroesMockData.map { data in
+            HeroesCollectionModel.init(heroNameImage: data.heroNameImage,
+                                       heroName: data.heroName,
+                                       heroPosition: data.heroPosition,
+                                       heroStrength: data.heroStrength,
+                                       heroAgility: data.heroAgility,
+                                       heroIntelligence: data.heroIntelligence)
         }
         return convertedModel
     }
