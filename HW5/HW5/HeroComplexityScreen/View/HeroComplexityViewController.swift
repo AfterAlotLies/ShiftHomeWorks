@@ -9,11 +9,6 @@ import UIKit
 
 class HeroComplexityViewController: UIViewController {
     
-    private enum Constants {
-        static let firstYcolor = UIColor(red: 84.0 / 255.0, green: 13.0 / 255.0, blue: 13.0 / 255.0, alpha: 1)
-        static let secondYColor = UIColor(red: 26.0 / 255.0, green: 19.0 / 255.0, blue: 19.0 / 255.0, alpha: 1)
-    }
-    
     private var complexity: String = ""
     private let viewModel: ViewModel
     
@@ -47,7 +42,7 @@ class HeroComplexityViewController: UIViewController {
 }
 
 // MARK: - HeroComplexityViewController + IViewModel
-extension HeroComplexityViewController: IViewModel {
+extension HeroComplexityViewController: IViewController {
     
     func setComplexityLabel(complexity: HeroComplexityModel) {
            DispatchQueue.main.async {

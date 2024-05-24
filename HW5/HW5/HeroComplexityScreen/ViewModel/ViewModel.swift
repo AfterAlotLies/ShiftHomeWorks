@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IViewModel: AnyObject {
+protocol IViewController: AnyObject {
     func setComplexityLabel(complexity: HeroComplexityModel)
 }
 
@@ -21,7 +21,7 @@ class ViewModel {
         }
     }
     
-    weak var delegate: IViewModel? {
+    weak var delegate: IViewController? {
         didSet {
             delegate?.setComplexityLabel(complexity: complexityHero)
         }
@@ -45,7 +45,6 @@ private extension ViewModel {
     func updateComplexityData() {
         let newComplexity = HeroComplexityModel(complexity: "Updated Complexity: \(Int.random(in: 1...100))")
         complexityHero = newComplexity
-        setupRandomTimer()
     }
 }
 
