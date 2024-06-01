@@ -9,21 +9,23 @@ import Foundation
 import UIKit
 
 protocol ICarListPresenter {
-    func fetchData(controller: ICarListViewController)
+    func didLoad(ui: ICarListViewController)
 }
 
 class CarListPresenter: ICarListPresenter {
-    private weak var controller: ICarListViewController?
+    private weak var ui: ICarListViewController?
     private let networkManager: INetworkManager
+    private let dataSource: ICarListViewDataSource
     
     private var carDetails = [MainCarModel]()
     
-    init(networkManager: INetworkManager) {
+    init(networkManager: INetworkManager, dataSource: ICarListViewDataSource) {
         self.networkManager = networkManager
+        self.dataSource = dataSource
     }
     
-    func fetchData(controller: ICarListViewController) {
-        self.controller = controller
+    func didLoad(ui: ICarListViewController) {
+        self.ui = ui
         getCarDetail()
     }
     
@@ -32,7 +34,7 @@ class CarListPresenter: ICarListPresenter {
         let carInfoDataSource = CarInfoViewDataSource()
         let carInfoViewController = CarInfoViewController(carInfoPresenter: carInfoPresenter,
                                                           dataSource: carInfoDataSource)
-        controller?.showNextController(carInfoViewController)
+        ui?.showNextController(carInfoViewController)
     }
 }
 
@@ -41,10 +43,10 @@ extension CarListPresenter {
     func getCarDetail() {
         networkManager.getCarInformation { [weak self] carDetails in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.carDetails = carDetails
-                self.controller?.passCarData(dataModel: self.carDetails)
-            }
+            self.carDetails = carDetails
+            self.ui?.passCarData(dataModel: self.carDetails)
+            self.dataSource.getCarInfo(carInfo: self.carDetails)
+            self.ui?.reloadTableViewData()
         }
     }
 }
