@@ -10,6 +10,7 @@ import UIKit
 protocol ICarListViewController: AnyObject {
     func passCarData(dataModel: [MainCarModel])
     func showNextController(_ viewController: UIViewController)
+    func reloadTableViewData()
 }
 
 class CarListViewController: UIViewController {
@@ -42,15 +43,17 @@ class CarListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        carListPresenter.fetchData(controller: self)
+        carListPresenter.didLoad(ui: self)
     }
 }
 
 extension CarListViewController: ICarListViewController {
     
     func passCarData(dataModel: [MainCarModel]) {
-        dataSource.getCarInfo(carInfo: dataModel)
         carDetails = dataModel
+    }
+    
+    func reloadTableViewData() {
         carListView.reloadTableViewData()
     }
     
