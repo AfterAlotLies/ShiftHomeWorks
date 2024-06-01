@@ -62,7 +62,7 @@ class CarInfoView: UIView {
         
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.clear.cgColor
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 25
         
         button.addTarget(self, action: #selector(calculatePriceAction), for: .touchUpInside)
         
@@ -156,8 +156,9 @@ private extension CarInfoView {
         NSLayoutConstraint.activate([
             calculatePriceButton.topAnchor.constraint(equalTo: carBodyTypeTableView.bottomAnchor, constant: Constants.topAnchorMargin),
             calculatePriceButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-            calculatePriceButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.leadingAnchorMargin),
-            calculatePriceButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Constants.trailingAnchorMargin)
+            calculatePriceButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            calculatePriceButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            calculatePriceButton.heightAnchor.constraint(equalToConstant: 51)
         ])
     }
 }
