@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let networkManager = NetworkManager()
         let dataSource = CarListViewDataSource()
-        let carListPresenter = CarListPresenter(networkManager: networkManager)
+        let carListPresenter = CarListPresenter(networkManager: networkManager, dataSource: dataSource)
         let carListViewController = CarListViewController(carListPresenter: carListPresenter, dataSource: dataSource)
         
         navigationController.viewControllers = [carListViewController]
