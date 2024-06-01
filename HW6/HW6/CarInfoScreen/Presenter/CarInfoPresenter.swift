@@ -8,26 +8,26 @@
 import Foundation
 
 protocol ICarInfoPresenter {
-    func didLoad(controller: ICarInfoViewController)
+    func didLoad(ui: ICarInfoViewController)
 }
 
 class CarInfoPresenter: ICarInfoPresenter {
     private var carDetail: MainCarModel
-    private weak var controller: ICarInfoViewController?
+    private weak var ui: ICarInfoViewController?
     
     init(carDetail: MainCarModel) {
         self.carDetail = carDetail
     }
     
-    func didLoad(controller: ICarInfoViewController) {
-        self.controller = controller
-        controller.setupCarData(dataModel: convertDataModel(carDetail))
+    func didLoad(ui: ICarInfoViewController) {
+        self.ui = ui
+        ui.setupCarData(dataModel: convertDataModel(carDetail))
     }
     
     func setUpdatedCarData(data: CarInfoModel, choosenIndex: Int) {
-        controller?.updateCarImage(carImageName: data.markNameImage,
+        ui?.updateCarImage(carImageName: data.markNameImage,
                                    choosenCell: choosenIndex)
-        controller?.updateCarPrice(carPrice: data.carPrice)
+        ui?.updateCarPrice(carPrice: data.carPrice)
     }
 }
 
