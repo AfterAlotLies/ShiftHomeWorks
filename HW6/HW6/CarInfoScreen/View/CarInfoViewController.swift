@@ -40,9 +40,9 @@ class CarInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        carInfoPresenter.didLoad(controller: self)
+        carInfoPresenter.didLoad(ui: self)
         setupView()
-        simulateDataLoading()
+        dataLoading()
     }
     
     init(carInfoPresenter: CarInfoPresenter, dataSource: ICarInfoViewDataSource) {
@@ -131,7 +131,7 @@ private extension CarInfoViewController {
         ])
     }
     
-    func simulateDataLoading() {
+    func dataLoading() {
         hideCarInfoView()
         startLoaderActivity()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
