@@ -11,6 +11,7 @@ protocol ICarInfoViewController: AnyObject {
     func setupCarData(dataModel: [CarInfoModel])
     func updateCarImage(carImageName: String, choosenCell: Int)
     func updateCarPrice(carPrice: Int)
+    func loadData()
 }
 
 class CarInfoViewController: UIViewController {
@@ -42,7 +43,6 @@ class CarInfoViewController: UIViewController {
         super.viewDidLoad()
         carInfoPresenter.didLoad(ui: self)
         setupView()
-        dataLoading()
     }
     
     init(carInfoPresenter: CarInfoPresenter, dataSource: ICarInfoViewDataSource) {
@@ -81,6 +81,16 @@ extension CarInfoViewController: ICarInfoViewController {
         carInfoView.setActionHandler { [weak self] in
             guard let self = self else { return }
             self.carInfoView.updateCarPrice(price: carPrice)
+        }
+    }
+    
+    func loadData() {
+        hideCarInfoView()
+        startLoaderActivity()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            guard let self = self else { return }
+            self.stopLoaderActivity()
+            self.showCarInfoView()
         }
     }
     
@@ -129,16 +139,6 @@ private extension CarInfoViewController {
             loaderIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loaderIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-    
-    func dataLoading() {
-        hideCarInfoView()
-        startLoaderActivity()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            guard let self = self else { return }
-            self.stopLoaderActivity()
-            self.showCarInfoView()
-        }
     }
     
     func startLoaderActivity() {

@@ -22,6 +22,7 @@ class CarInfoPresenter: ICarInfoPresenter {
     func didLoad(ui: ICarInfoViewController) {
         self.ui = ui
         ui.setupCarData(dataModel: convertDataModel(carDetail))
+        ui.loadData()
     }
     
     func setUpdatedCarData(data: CarInfoModel, choosenIndex: Int) {
