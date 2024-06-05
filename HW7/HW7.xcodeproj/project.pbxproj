@@ -19,6 +19,7 @@
 		11BB10EE2C0C7B9500288791 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10ED2C0C7B9500288791 /* ImageModel.swift */; };
 		11BB10F42C0C87FF00288791 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10F32C0C87FF00288791 /* MainPresenter.swift */; };
 		11BB10F62C0DC36B00288791 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10F52C0DC36B00288791 /* DataManager.swift */; };
+		11BB10F92C1061B800288791 /* BackgroundSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB10F82C1061B800288791 /* BackgroundSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		11BB10F32C0C87FF00288791 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		11BB10F52C0DC36B00288791 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		11BB10F72C0DC4A900288791 /* HW7.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HW7.entitlements; sourceTree = "<group>"; };
+		11BB10F82C1061B800288791 /* BackgroundSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				11BB10CB2C0C687500288791 /* AppDelegate.swift */,
 				11BB10CD2C0C687500288791 /* SceneDelegate.swift */,
+				11BB10F82C1061B800288791 /* BackgroundSessionManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				11BB10F42C0C87FF00288791 /* MainPresenter.swift in Sources */,
 				11BB10CE2C0C687500288791 /* SceneDelegate.swift in Sources */,
 				11BB10E62C0C6D9400288791 /* MainTableViewCell.swift in Sources */,
+				11BB10F92C1061B800288791 /* BackgroundSessionManager.swift in Sources */,
 				11BB10E92C0C729A00288791 /* MainTableViewDataSource.swift in Sources */,
 				11BB10EE2C0C7B9500288791 /* ImageModel.swift in Sources */,
 			);
