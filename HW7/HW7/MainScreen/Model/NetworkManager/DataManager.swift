@@ -8,18 +8,17 @@
 import UIKit
 
 protocol IDataManager {
-    func decodeData(imageData: Data) -> String
+    func decodeData(imageData: Data) -> Result<String,Error>
 }
 
 class DataManager: IDataManager {
     
-    func decodeData(imageData: Data) -> String {
+    func decodeData(imageData: Data) -> Result<String,Error> {
         do {
             let urlData = try JSONDecoder().decode(ImageModel.self, from: imageData)
-            return urlData.imageUrl
+            return .success(urlData.imageUrl)
         } catch {
-            print("error")
+            return .failure(error)
         }
-        return ""
     }
 }
