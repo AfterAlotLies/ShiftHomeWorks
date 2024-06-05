@@ -7,9 +7,11 @@
 
 import UIKit
 
-protocol IMainTableViewDataSource: UITableViewDataSource {
+protocol IDataProvider {
     func addNewImage(imageData: Data)
 }
+
+protocol IMainTableViewDataSource: UITableViewDataSource, IDataProvider {}
 
 class MainTableViewDataSource: NSObject, IMainTableViewDataSource {
     
@@ -24,7 +26,7 @@ class MainTableViewDataSource: NSObject, IMainTableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setImage(image: imagesArray[indexPath.row])
+        cell.setImage(imagesArray[indexPath.row])
         
         return cell
     }
