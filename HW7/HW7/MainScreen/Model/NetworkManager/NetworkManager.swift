@@ -9,27 +9,25 @@ import UIKit
 import Foundation
 
 protocol INetworkManager {
-    func makeRequest(url: String, completion: @escaping (Result<Data,Error>) -> Void)
+    func makeRequest(keyWord: String, completion: @escaping (Result<Data,Error>) -> Void)
     func getImageFromUrl(imageUrl: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 class NetworkManager: NSObject, INetworkManager, URLSessionDelegate, URLSessionDataDelegate {
-    static let shared = NetworkManager()
-    var backgroundSession: URLSession!
-    var completionHandlers: [String: (Result<Data, Error>) -> Void] = [:]
-    var receivedData: [String: Data] = [:]
-
-    override init() {
-        super.init()
-        let backgroundConfig = URLSessionConfiguration.background(withIdentifier: "1")
+    
+    lazy var backgroundSession: URLSession = {
+        let backgroundConfig = URLSessionConfiguration.background(withIdentifier: UUID().uuidString)
         backgroundConfig.isDiscretionary = true
         backgroundConfig.sessionSendsLaunchEvents = true
-        backgroundSession = URLSession(configuration: backgroundConfig, delegate: self, delegateQueue: nil)
-    }
+        return URLSession(configuration: backgroundConfig, delegate: self, delegateQueue: nil)
+    }()
     
-    func makeRequest(url: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: url) else {
-            print("Incorrect URL")
+    private var completionHandlers: [String: (Result<Data, Error>) -> Void] = [:]
+    private var receivedData: [String: Data] = [:]
+    
+    func makeRequest(keyWord: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let urlString = "https://dog.ceo/api/breed/\(keyWord)/images/random"
+        guard let url = URL(string: urlString) else {
             completion(.failure(URLError(.badURL)))
             return
         }
@@ -42,7 +40,7 @@ class NetworkManager: NSObject, INetworkManager, URLSessionDelegate, URLSessionD
     
     func getImageFromUrl(imageUrl: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: imageUrl) else {
-            print("Incorrect URL")
+            completion(.failure(URLError(.badURL)))
             return
         }
         
@@ -62,31 +60,42 @@ class NetworkManager: NSObject, INetworkManager, URLSessionDelegate, URLSessionD
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-         if let error = error {
-             if let completionHandler = completionHandlers[task.taskDescription ?? ""] {
-                 completionHandler(.failure(error))
-                 completionHandlers.removeValue(forKey: task.taskDescription ?? "")
-             }
-         } else if let taskDescription = task.taskDescription,
-                   let data = receivedData[taskDescription] {
-             if let completionHandler = completionHandlers[taskDescription] {
-                 completionHandler(.success(data))
-                 completionHandlers.removeValue(forKey: taskDescription)
-                 receivedData.removeValue(forKey: taskDescription)
-             }
-         }
-     }
+        guard let taskDescription = task.taskDescription else { return }
+        
+        if let error = error {
+            handleRequestCompletion(taskDescription: taskDescription, result: .failure(error))
+        } else if let data = receivedData[taskDescription] {
+            handleRequestCompletion(taskDescription: taskDescription, result: .success(data))
+        }
+    }
+
+    func handleRequestCompletion(taskDescription: String, result: Result<Data, Error>) {
+        if let completionHandler = completionHandlers[taskDescription] {
+            completionHandler(result)
+            completionHandlers.removeValue(forKey: taskDescription)
+            switch result {
+            case .success(_):
+                receivedData.removeValue(forKey: taskDescription)
+            case .failure(_):
+                print("error")
+            }
+        }
+    }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        let taskDescription = dataTask.taskDescription ?? ""
-        if receivedData[taskDescription] == nil {
-            receivedData[taskDescription] = Data()
+        if let taskDescription = dataTask.taskDescription {
+            if receivedData[taskDescription] == nil {
+                receivedData[taskDescription] = Data()
+            }
+            receivedData[taskDescription]?.append(data)
         }
-        receivedData[taskDescription]?.append(data)
+       
     }
     
     func setCompletionHandler(for task: URLSessionTask, handler: @escaping (Result<Data, Error>) -> Void) {
-        completionHandlers[task.taskDescription ?? ""] = handler
+        if let taskDescription = task.taskDescription {
+            completionHandlers[taskDescription] = handler
+        }
     }
     
 }
