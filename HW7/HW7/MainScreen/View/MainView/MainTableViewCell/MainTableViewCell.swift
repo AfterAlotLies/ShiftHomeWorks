@@ -27,7 +27,7 @@ class MainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setImage(image: UIImage) {
+    func setImage(_ image: UIImage) {
         dogImageView.image = image
     }
     
