@@ -9,6 +9,8 @@ import Foundation
 
 protocol IMainPresenter {
     func didLoad(ui: IMainViewController, findDog: String)
+    func hideKeyboardOnScreenTap(ui: IMainViewController)
+    
 }
 
 class MainPresenter: IMainPresenter {
@@ -27,31 +29,46 @@ class MainPresenter: IMainPresenter {
         self.ui = ui
         makeRequest(findDog: findDog)
     }
+    
+    func hideKeyboardOnScreenTap(ui: IMainViewController) {
+        self.ui = ui
+        ui.hideKeyboard()
+    }
+    
 }
 
 private extension MainPresenter {
     
     func makeRequest(findDog: String) {
-        networkManager.makeRequest(url: "https://dog.ceo/api/breed/\(findDog)/images/random") { [weak self] result in
+        networkManager.makeRequest(keyWord: findDog) { [weak self] result in
             guard let self = self else { return }
             switch result {
 
             case .success(let imageUrl):
                 let imageUrl = dataManager.decodeData(imageData: imageUrl)
-                networkManager.getImageFromUrl(imageUrl: imageUrl) { result in
-                    switch result {
+                switch imageUrl {
 
-                    case .success(let data):
-                        self.dataSource.addNewImage(imageData: data)
-                        DispatchQueue.main.async {
-                            self.ui?.reloadTableView()
-                        }
+                    case .success(let imageUrlString):
+                        networkManager.getImageFromUrl(imageUrl: imageUrlString) { result in
+                            switch result {
+
+                                case .success(let data):
+                                    self.dataSource.addNewImage(imageData: data)
+                                    DispatchQueue.main.async {
+                                        self.ui?.reloadTableView()
+                                    }
+
+                                case .failure(let error):
+                                    DispatchQueue.main.async {
+                                        self.ui?.showErrorAlert(error: error)
+                                    }
+                            }
+                    }
 
                     case .failure(let error):
                         DispatchQueue.main.async {
                             self.ui?.showErrorAlert(error: error)
                         }
-                    }
                 }
 
             case .failure(let error):
