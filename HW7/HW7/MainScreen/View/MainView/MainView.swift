@@ -9,6 +9,12 @@ import UIKit
 
 class MainView: UIView {
     
+    private enum Constants {
+        static let topAnchorMargin: CGFloat = 16
+        static let leadingAnchorMargin: CGFloat = 16
+        static let trailingAnchorMargin: CGFloat = -16
+    }
+    
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -64,11 +70,11 @@ class MainView: UIView {
         actionHandler = handler
     }
     
-    func getEnteredDogName() -> String {
+    func getEnteredDogName() -> String? {
         if let dogName = inputTextField.text {
             return dogName.lowercased()
         } else {
-            return ""
+            return nil
         }
     }
 }
@@ -86,23 +92,23 @@ private extension MainView {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            inputTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            inputTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            inputTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            inputTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.topAnchorMargin),
+            inputTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            inputTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Constants.trailingAnchorMargin),
             inputTextField.heightAnchor.constraint(equalToConstant: 35)
         ])
         
         NSLayoutConstraint.activate([
             findDogButton.heightAnchor.constraint(equalToConstant: 35),
-            findDogButton.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 16),
-            findDogButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            findDogButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+            findDogButton.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: Constants.topAnchorMargin),
+            findDogButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            findDogButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Constants.trailingAnchorMargin)
         ])
         
         NSLayoutConstraint.activate([
-            dataTableView.topAnchor.constraint(equalTo: findDogButton.bottomAnchor, constant: 16),
-            dataTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            dataTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            dataTableView.topAnchor.constraint(equalTo: findDogButton.bottomAnchor, constant: Constants.topAnchorMargin),
+            dataTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.leadingAnchorMargin),
+            dataTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Constants.trailingAnchorMargin),
             dataTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
         ])
     }
