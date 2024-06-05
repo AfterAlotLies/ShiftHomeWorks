@@ -10,6 +10,7 @@ import UIKit
 protocol IMainViewController: AnyObject {
     func reloadTableView()
     func showErrorAlert(error: Error)
+    func hideKeyboard()
 }
 
 class MainViewController: UIViewController {
@@ -38,8 +39,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         mainView.findDogButtonAction { [weak self] in
             guard let self = self else { return }
-            self.presenter.didLoad(ui: self, findDog: self.mainView.getEnteredDogName())
+            if let keyword = mainView.getEnteredDogName() {
+                self.presenter.didLoad(ui: self, findDog: keyword)
+            }
         }
+        presenter.hideKeyboardOnScreenTap(ui: self)
         setupView()
     }
 
@@ -56,6 +60,12 @@ extension MainViewController: IMainViewController {
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func hideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -74,6 +84,11 @@ private extension MainViewController {
             mainView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
