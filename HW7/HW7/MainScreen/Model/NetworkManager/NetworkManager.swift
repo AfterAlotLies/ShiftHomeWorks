@@ -77,7 +77,7 @@ class NetworkManager: NSObject, INetworkManager, URLSessionDelegate, URLSessionD
             case .success(_):
                 receivedData.removeValue(forKey: taskDescription)
             case .failure(_):
-                print("error")
+                return
             }
         }
     }
