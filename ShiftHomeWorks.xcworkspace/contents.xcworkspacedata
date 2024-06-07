@@ -8,6 +8,9 @@
       location = "group:HW5/HW5.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:HW7/HW7.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:HW5/HW5.xcodeproj">
    </FileRef>
    <FileRef
